@@ -1,11 +1,8 @@
 using Ecommerce.Utilities.EFCore.Attributes;
 using Ecommerce.Utilities.EFCore.CommandGenerators;
-using Microsoft.EntityFrameworkCore.Internal;
-using System;
 using System.Collections;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
 
 namespace Ecommerce.Utilities.EFCore

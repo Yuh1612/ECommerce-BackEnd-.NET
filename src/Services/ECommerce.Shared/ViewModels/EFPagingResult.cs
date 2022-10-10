@@ -1,8 +1,4 @@
-using ECommerce.Shared.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ECommerce.Shared.ViewModels
 {
