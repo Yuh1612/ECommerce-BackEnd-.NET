@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{D0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Product", "Product", "{ABB0C823-812D-4766-A947-DB8629DCD1F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Product.API", "src\Services\Product\ECommerce.Product.API\ECommerce.Product.API.csproj", "{B05749F2-FE3D-4421-9135-EE89E69223FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Products.API", "src\Services\Product\ECommerce.Product.API\ECommerce.Products.API.csproj", "{B05749F2-FE3D-4421-9135-EE89E69223FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Product.Infrastructure", "src\Services\Product\ECommerce.Product.Infrastructure\ECommerce.Product.Infrastructure.csproj", "{2C2A65BB-BBAE-4221-8AF8-7FAF02F8B0DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Products.Infrastructure", "src\Services\Product\ECommerce.Product.Infrastructure\ECommerce.Products.Infrastructure.csproj", "{2C2A65BB-BBAE-4221-8AF8-7FAF02F8B0DF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Product.Domain", "src\Services\Product\ECommerce.Product.Domain\ECommerce.Product.Domain.csproj", "{8256BD2B-98D4-4C2B-ACBC-D92C5FB88B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Products.Domain", "src\Services\Product\ECommerce.Product.Domain\ECommerce.Products.Domain.csproj", "{8256BD2B-98D4-4C2B-ACBC-D92C5FB88B62}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Shared", "src\Services\ECommerce.Shared\ECommerce.Shared.csproj", "{642C4FF6-6FA7-4882-AAE6-A709A670AD42}"
 EndProject

@@ -1,10 +1,6 @@
 using ECommerce.Shared.Constants;
 using ECommerce.Shared.ViewModels;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 
 namespace ELDesk.Shared.Infrastructure.Service.Extensions
 {

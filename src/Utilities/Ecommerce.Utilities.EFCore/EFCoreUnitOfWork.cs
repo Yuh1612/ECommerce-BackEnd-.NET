@@ -3,14 +3,9 @@ using Ecommerce.Utilities.EFCore.Extensions;
 using Ecommerce.Utilities.EFCore.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ecommerce.Utilities.EFCore
 {
@@ -20,7 +15,7 @@ namespace Ecommerce.Utilities.EFCore
 
         public async Task<int> ExecuteCommandAsync(ISqlCommandBase dbCommand)
         {
-            var result = await DbContext.Database.ExecuteSqlRawAsync(dbCommand.Sql, dbCommand.Parameters);
+            var result = await DbContext.Database.ExecuteSqlRawAsync(dbCommand.Sql ?? "", dbCommand.Parameters); ;
             dbCommand.LoadOutputParameters();
             return result;
         }

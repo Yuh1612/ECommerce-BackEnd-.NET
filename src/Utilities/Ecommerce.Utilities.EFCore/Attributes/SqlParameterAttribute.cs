@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 
 namespace Ecommerce.Utilities.EFCore.Attributes
