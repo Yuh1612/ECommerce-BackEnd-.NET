@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{36d9c179-89ef-4c67-b86d-f8debfa14045}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -45,6 +45,7 @@
     <DefineTrace>true</DefineTrace>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <SqlTargetName>ECommerce.Product</SqlTargetName>
   </PropertyGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
@@ -66,8 +67,10 @@
     <Build Include="Tables\ShopProducts.sql" />
     <Build Include="Tables\ProductCategories.sql" />
     <Build Include="Tables\Option.sql" />
+    <Build Include="Tables\ProductOptions.sql" />
+    <Build Include="Tables\Search.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="ECommerce.Product.Database.refactorlog" />
+    <RefactorLog Include="ECommerce.Products.Database.refactorlog" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Search]
+(
+	[UserId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Keyword] NVARCHAR(MAX) NOT NULL, 
+    [IsDelete] BIT NOT NULL DEFAULT 0,
+    [CreateAt] DATETIME NULL, 
+    [CreateBy] UNIQUEIDENTIFIER NULL
+)
