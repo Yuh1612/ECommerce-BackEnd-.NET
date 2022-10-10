@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ECommerce.Shared.ViewModels
+{
+    public interface IUserInfo
+    {
+        int Id { get; set; }
+        string? Username { get; set; }
+        string? AvatarUrl { get; set; }
+        int RoleId { get; set; }
+        string[]? Scopes { get; set; }
+
+        void Reset();
+    }
+
+    public class UserInfo : IUserInfo
+    {
+        public int Id { get; set; }
+        public string? Username { get; set; }
+        public string? AvatarUrl { get; set; }
+        public int RoleId { get; set; }
+        public string[]? Scopes { get; set; }
+
+        public void Reset()
+        {
+            Id = default;
+            Username = default;
+            AvatarUrl = default;
+            RoleId = default;
+            Scopes = default;
+        }
+    }
+}
