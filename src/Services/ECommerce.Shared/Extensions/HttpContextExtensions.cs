@@ -15,9 +15,9 @@ namespace ELDesk.Shared.Infrastructure.Service.Extensions
             return default;
         }
 
-        public static int UserId(this HttpContext context)
+        public static Guid UserId(this HttpContext context)
         {
-            int.TryParse(GetClaimValue(context, AppClaimType.UserId), out var userId);
+            Guid.TryParse(GetClaimValue(context, AppClaimType.UserId), out var userId);
             return userId;
         }
 

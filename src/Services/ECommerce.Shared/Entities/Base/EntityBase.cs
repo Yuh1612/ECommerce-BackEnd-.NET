@@ -12,11 +12,11 @@ namespace ECommerce.Shared.Entities.Base
 
         [NotMapped]
         [JsonIgnore]
-        public virtual IReadOnlyCollection<INotification>? DomainEvents => _domainEvents?.AsReadOnly();
+        public virtual IReadOnlyCollection<INotification> DomainEvents => _domainEvents.AsReadOnly();
 
         [NotMapped]
         [JsonIgnore]
-        public IReadOnlyCollection<INotification>? IntegrationEvents => _integrationEvents?.AsReadOnly();
+        public IReadOnlyCollection<INotification> IntegrationEvents => _integrationEvents.AsReadOnly();
 
         public virtual void AddDomainEvent(INotification eventItem)
         {
@@ -32,32 +32,32 @@ namespace ECommerce.Shared.Entities.Base
 
         public virtual void RemoveDomainEvent(INotification eventItem)
         {
-            _domainEvents?.Remove(eventItem);
+            _domainEvents.Remove(eventItem);
         }
 
         public virtual void RemoveIntegrationEvent(INotification eventItem)
         {
-            _integrationEvents?.Remove(eventItem);
+            _integrationEvents.Remove(eventItem);
         }
 
         public virtual void ClearDomainEvents()
         {
-            _domainEvents?.Clear();
+            _domainEvents.Clear();
         }
 
         public virtual void ClearIntegrationEvents()
         {
-            _integrationEvents?.Clear();
+            _integrationEvents.Clear();
         }
 
-        public virtual IReadOnlyCollection<INotification>? GetDomainEvents()
+        public virtual IReadOnlyCollection<INotification> GetDomainEvents()
         {
-            return _domainEvents?.AsReadOnly();
+            return _domainEvents.AsReadOnly();
         }
 
-        public virtual IReadOnlyCollection<INotification>? GetIntegrationEvents()
+        public virtual IReadOnlyCollection<INotification> GetIntegrationEvents()
         {
-            return _integrationEvents?.AsReadOnly();
+            return _integrationEvents.AsReadOnly();
         }
     }
 }

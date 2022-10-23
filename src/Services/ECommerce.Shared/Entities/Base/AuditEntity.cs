@@ -2,12 +2,12 @@
 
 namespace ECommerce.Shared.Entities.Base
 {
-    public class AuditEntity : Entity, IAuditEntity
+    public class AuditEntityBase : EntityBase, IAuditEntity
     {
-        public virtual int CreatedBy { get; protected set; }
+        public virtual Guid CreatedBy { get; protected set; }
         public virtual DateTime CreatedOn { get; protected set; }
 
-        public virtual void UpdateAudit(int createdBy, DateTime createdOn)
+        public virtual void UpdateAudit(Guid createdBy, DateTime createdOn)
         {
             CreatedBy = createdBy;
             CreatedOn = createdOn;

@@ -58,13 +58,13 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="DefaultDatas" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Shop.sql" />
     <Build Include="Tables\Product.sql" />
     <Build Include="Tables\Brand.sql" />
     <Build Include="Tables\Category.sql" />
-    <Build Include="Tables\ShopProducts.sql" />
     <Build Include="Tables\ProductCategories.sql" />
     <Build Include="Tables\Option.sql" />
     <Build Include="Tables\ProductOptions.sql" />
@@ -72,5 +72,14 @@
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="ECommerce.Products.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Script.PostDeployment.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DefaultDatas\BrandDefaultData.sql" />
+    <None Include="DefaultDatas\OptionDefaultData.sql" />
+    <None Include="DefaultDatas\CategoryDefaultData.sql" />
+    <None Include="DefaultDatas\ShopDefaultData.sql" />
   </ItemGroup>
 </Project>

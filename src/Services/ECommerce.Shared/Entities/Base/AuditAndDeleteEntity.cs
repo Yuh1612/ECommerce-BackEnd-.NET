@@ -2,7 +2,7 @@
 
 namespace ECommerce.Shared.Entities.Base
 {
-    public class AuditAndDeleteEntity : AuditEntity, IDeleteEntity
+    public class AuditAndDeleteEntityBase : AuditEntityBase, IDeleteEntity
     {
         public bool IsDeleted { get; protected set; }
 

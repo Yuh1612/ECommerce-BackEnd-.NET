@@ -19,6 +19,6 @@ namespace Ecommerce.Utilities.EFCore.Interfaces
 
     public interface IEFCoreUnitOfWork<T> : IEFCoreUnitOfWork where T : DbContext
     {
-        T DbContext { get; }
+        public T DbContext { get; }
     }
 }

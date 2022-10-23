@@ -2,9 +2,9 @@
 {
     public interface IAuditEntity : IEntityBase
     {
-        int CreatedBy { get; }
+        Guid CreatedBy { get; }
         DateTime CreatedOn { get; }
 
-        void UpdateAudit(int createdBy, DateTime createdOn);
+        void UpdateAudit(Guid createdBy, DateTime createdOn);
     }
 }

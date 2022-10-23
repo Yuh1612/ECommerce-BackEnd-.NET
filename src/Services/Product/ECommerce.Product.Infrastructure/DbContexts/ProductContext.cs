@@ -1,6 +1,7 @@
 ﻿#nullable disable
 
 using ECommerce.Products.Domain.Entities;
+using ECommerce.Shared.Entities.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Products.Infrastructure.DbContexts
@@ -61,9 +62,7 @@ namespace ECommerce.Products.Infrastructure.DbContexts
 
                 entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.Code).IsRequired();
-
-                entity.Property(e => e.CreateAt).HasColumnType("datetime");
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.Name).IsRequired();
 
@@ -76,28 +75,36 @@ namespace ECommerce.Products.Infrastructure.DbContexts
                     .HasColumnName("slug")
                     .IsFixedLength();
 
+                entity.Property(e => e.UpdatedOn).HasColumnType("datetime");
+
                 entity.HasOne(d => d.Brand)
                     .WithMany(p => p.Product)
                     .HasForeignKey(d => d.BrandId)
                     .HasConstraintName("FK_Product_Brand");
+
+                entity.HasOne(d => d.Shop)
+                    .WithMany(p => p.Product)
+                    .HasForeignKey(d => d.ShopId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Product_Shop");
             });
 
             modelBuilder.Entity<ProductCategories>(entity =>
             {
                 entity.ToTable("ProductCategories");
 
-                entity.HasNoKey();
+                entity.HasKey(e => new { e.ProductId, e.CategoryId });
 
-                entity.Property(e => e.CreateAt).HasColumnType("datetime");
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Category)
-                    .WithMany()
+                    .WithMany(p => p.ProductCategories)
                     .HasForeignKey(d => d.CategoryId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductCategories_Category");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.ProductCategories)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductCategories_Product");
@@ -107,16 +114,18 @@ namespace ECommerce.Products.Infrastructure.DbContexts
             {
                 entity.ToTable("ProductOptions");
 
-                entity.HasNoKey();
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.ProductId).ValueGeneratedNever();
 
                 entity.HasOne(d => d.Option)
-                    .WithMany()
+                    .WithMany(p => p.ProductOptions)
                     .HasForeignKey(d => d.OptionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductOptions_Option");
 
                 entity.HasOne(d => d.Product)
-                    .WithMany()
+                    .WithMany(p => p.ProductOptions)
                     .HasForeignKey(d => d.ProductId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ProductOptions_Product");
@@ -127,11 +136,11 @@ namespace ECommerce.Products.Infrastructure.DbContexts
                 entity.ToTable("Search");
 
                 entity.HasKey(e => e.UserId)
-                    .HasName("PK__Search__1788CC4CA3047747");
+                    .HasName("PK__Search__1788CC4C50F534DA");
 
                 entity.Property(e => e.UserId).ValueGeneratedNever();
 
-                entity.Property(e => e.CreateAt).HasColumnType("datetime");
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.Keyword).IsRequired();
             });
@@ -151,9 +160,9 @@ namespace ECommerce.Products.Infrastructure.DbContexts
 
                 entity.HasNoKey();
 
-                entity.Property(e => e.CreateAt).HasColumnType("datetime");
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
-                entity.Property(e => e.UpdateAt).HasColumnType("datetime");
+                entity.Property(e => e.UpdatedOn).HasColumnType("datetime");
 
                 entity.HasOne(d => d.Product)
                     .WithMany()

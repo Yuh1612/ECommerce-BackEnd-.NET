@@ -11,16 +11,23 @@ namespace Ecommerce.Utilities.EFCore
 {
     public class EFCoreUnitOfWork<T> : IEFCoreUnitOfWork<T> where T : DbContext
     {
-        public T DbContext => throw new NotImplementedException();
+        private readonly IDbFactory<T> _dbFactory;
 
-        public async Task<int> ExecuteCommandAsync(ISqlCommandBase dbCommand)
+        public EFCoreUnitOfWork(IDbFactory<T> dbFactory)
+        {
+            _dbFactory = dbFactory;
+        }
+
+        public T DbContext => _dbFactory.DbContext;
+
+        public virtual async Task<int> ExecuteCommandAsync(ISqlCommandBase dbCommand)
         {
             var result = await DbContext.Database.ExecuteSqlRawAsync(dbCommand.Sql ?? "", dbCommand.Parameters); ;
             dbCommand.LoadOutputParameters();
             return result;
         }
 
-        public async Task<List<TEntity>> ExecuteQueryAsync<TEntity>(ISqlCommandBase dbCommand) where TEntity : new()
+        public virtual async Task<List<TEntity>> ExecuteQueryAsync<TEntity>(ISqlCommandBase dbCommand) where TEntity : new()
         {
             var connection = GetDbConnection(out bool isNewConnection);
             using var command = CreateCommand(connection);
@@ -40,7 +47,7 @@ namespace Ecommerce.Utilities.EFCore
             return dt.ToList<TEntity>();
         }
 
-        public async Task<TResultSet> ExecuteQueryMultiSetsAsync<TResultSet>(ISqlCommandBase dbCommand) where TResultSet : new()
+        public virtual async Task<TResultSet> ExecuteQueryMultiSetsAsync<TResultSet>(ISqlCommandBase dbCommand) where TResultSet : new()
         {
             var connection = GetDbConnection(out bool isNewConnection);
             using var command = CreateCommand(connection);
@@ -73,7 +80,7 @@ namespace Ecommerce.Utilities.EFCore
             return result;
         }
 
-        public async Task<TResult> ExecuteTransactionAsync<TResult>(Func<Task<TResult>> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
+        public virtual async Task<TResult> ExecuteTransactionAsync<TResult>(Func<Task<TResult>> func, IsolationLevel isolationLevel = IsolationLevel.ReadCommitted)
         {
             if (DbContext.Database.CurrentTransaction != null) return await func.Invoke();
 
@@ -96,7 +103,7 @@ namespace Ecommerce.Utilities.EFCore
             return transResult;
         }
 
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public virtual async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return await DbContext.SaveChangesAsync(cancellationToken);
         }
