@@ -14,9 +14,10 @@ namespace ECommerce.Products.Domain.Entities
             , string? description
             , decimal price
             , int quantity
-            , double weight
-            , double height
-            , double length
+            , int weight
+            , int height
+            , int length
+            , int width
             , Guid? brandId)
         {
             Code = Guid.NewGuid();
@@ -28,6 +29,7 @@ namespace ECommerce.Products.Domain.Entities
             Weight = weight;
             Height = height;
             Length = length;
+            Width = width;
             BrandId = brandId;
         }
 
@@ -45,6 +47,21 @@ namespace ECommerce.Products.Domain.Entities
             {
                 AddCategory(categoryId);
             }
+        }
+
+        public void AddOption(Guid optionId, string description)
+        {
+            ProductOptions.Add(new ProductOptions
+            {
+                ProductId = Id,
+                OptionId = optionId,
+                Description = description
+            });
+        }
+
+        public void Active()
+        {
+            IsActive = true;
         }
     }
 }

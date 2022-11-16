@@ -9,6 +9,8 @@ using ECommerce.Shared.Indentity;
 using ECommerce.Shared.Services;
 using System.Reflection;
 using MediatR;
+using RabbitMQ.Models;
+using RabbitMQ;
 
 namespace ECommerce.Products.API.Extensions
 {
@@ -16,10 +18,16 @@ namespace ECommerce.Products.API.Extensions
     {
         public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            string connectionString = configuration.GetSection("ConnectionString").Value;
-            string secretKey = configuration.GetSection("SecretKey").Value;
+            string connectionString = configuration.GetRequiredSection("ConnectionString").Value!;
+            string secretKey = configuration.GetRequiredSection("SecretKey").Value!;
+            configuration.GetRequiredSection("RabbitMQSetting")
+                        .Get<RabbitMQServiceBusSettings>(options => options.BindNonPublicProperties = true);
+
+            services.AddCors();
 
             services.AddHttpContextAccessor();
+
+            services.AddRabbitMQServiceBus();
 
             services.AddDbContext<ProductContext>(connectionString);
             services.AddDbFactory<ProductContext>();

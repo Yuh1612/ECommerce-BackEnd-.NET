@@ -8,17 +8,19 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ServiceBus\ECommerce.ServiceBus\ECommerce.ServiceBus.csproj" />
     <ProjectReference Include="..\ECommerce.Product.Domain\ECommerce.Products.Domain.csproj" />
     <ProjectReference Include="..\ECommerce.Product.Infrastructure\ECommerce.Products.Infrastructure.csproj" />
+    <ProjectReference Include="..\ECommerce.Product.RabbitMQ\ECommerce.Products.RabbitMQ.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="ViewModels\Categories\Requests\" />
     <Folder Include="ViewModels\Options\Requests\" />
   </ItemGroup>
 

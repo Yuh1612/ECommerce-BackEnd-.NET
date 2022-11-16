@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Products.API.Controllers
 {
-    [Route("api/[controller]s")]
+    [Route("api/v1/[controller]s")]
     [ApiController]
     public class BrandController : ControllerBase
     {

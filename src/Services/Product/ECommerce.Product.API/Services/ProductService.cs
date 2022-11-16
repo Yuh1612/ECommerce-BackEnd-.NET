@@ -8,11 +8,13 @@ using ECommerce.Products.Domain;
 using ECommerce.Products.Domain.Entities;
 using ECommerce.Products.Domain.Products.Interfaces;
 using ECommerce.Products.Infrastructure.DbContexts;
+using ECommerce.Products.RabbitMQ.IntegrationEvents;
 using ECommerce.Shared.Exceptions;
 using ECommerce.Shared.Extensions;
 using ECommerce.Shared.Interfaces;
 using ECommerce.Shared.ViewModels;
 using Microsoft.EntityFrameworkCore;
+using RabbitMQ.Publisher;
 
 namespace ECommerce.Products.API.Services
 {
@@ -24,6 +26,7 @@ namespace ECommerce.Products.API.Services
         private readonly IShopRepository _shopRepository;
         private readonly IBrandRepository _brandRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly IServiceBus _serviceBus;
 
         public ProductService(IUnitOfWork<ProductContext> unitOfWork
             , IServiceProvider serviceProvider
@@ -32,7 +35,8 @@ namespace ECommerce.Products.API.Services
             , IProductCategoriesRepository productCategoriesRepository
             , IShopRepository shopRepository
             , IBrandRepository brandRepository
-            , ICategoryRepository categoryRepository)
+            , ICategoryRepository categoryRepository
+            , IServiceBus serviceBus)
             : base(unitOfWork, serviceProvider)
         {
             _productRepository = productRepository;
@@ -41,6 +45,7 @@ namespace ECommerce.Products.API.Services
             _shopRepository = shopRepository;
             _brandRepository = brandRepository;
             _categoryRepository = categoryRepository;
+            _serviceBus = serviceBus;
         }
 
         private string GetImagePath(string code)
@@ -72,9 +77,18 @@ namespace ECommerce.Products.API.Services
                 , request.Weight
                 , request.Height
                 , request.Length
+                , request.Width
                 , request.BrandId);
 
             product.AddCategories(request.CategoryIds);
+
+            if (!request.ProductOptions.IsNullOrEmpty())
+            {
+                foreach (var productOption in request.ProductOptions!)
+                {
+                    product.AddOption(productOption.Id, productOption.Description);
+                }
+            }
 
             string path = GetImagePath(product.Code.ToString());
 
@@ -86,6 +100,24 @@ namespace ECommerce.Products.API.Services
 
             await _productRepository.InsertAsync(product);
             await UnitOfWork.SaveChangesAsync();
+
+            //await _serviceBus.PublishEventAsync(new CreateProductEvent
+            //{
+            //    ProductId = product.Id,
+            //    Description = product.Description,
+            //    Name = product.Name,
+            //    Discount = product.Discount,
+            //    Height = product.Height,
+            //    Length = product.Length,
+            //    Price = product.Price,
+            //    Quantity = product.Quantity,
+            //    Weight = product.Weight,
+            //    Width = product.Width,
+            //    ShopId = product.ShopId,
+            //    Avatar = FileService.GetFileUrls(GetImagePath(product.Code.ToString()), "images")?.FirstOrDefault(),
+            //    IsActive = product.IsActive,
+            //    IsDeleted = product.IsDeleted,
+            //});
 
             return new ProductInfoResponse
             {
@@ -125,6 +157,35 @@ namespace ECommerce.Products.API.Services
             product.ImageUrl = FileService.GetFileUrls(GetImagePath(product.Code.ToString()), "images");
 
             return product;
+        }
+
+        public async Task ActiveProduct(Guid productId)
+        {
+            var product = await _productRepository.GetAsync(productId);
+            if (product == null) throw new BadRequestException(MessagesResource.NotFoundProduct);
+
+            product.Active();
+
+            await _productRepository.UpdateAsync(product);
+            await UnitOfWork.SaveChangesAsync();
+
+            await _serviceBus.PublishEventAsync(new CreateProductEvent
+            {
+                ProductId = product.Id,
+                Description = product.Description,
+                Name = product.Name,
+                Discount = product.Discount,
+                Height = product.Height,
+                Length = product.Length,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                Weight = product.Weight,
+                Width = product.Width,
+                ShopId = product.ShopId,
+                Avatar = FileService.GetFileUrls(GetImagePath(product.Code.ToString()), "images")?.FirstOrDefault(),
+                IsActive = product.IsActive,
+                IsDeleted = product.IsDeleted,
+            });
         }
     }
 }

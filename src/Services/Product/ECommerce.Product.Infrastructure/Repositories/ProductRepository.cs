@@ -20,5 +20,10 @@ namespace ECommerce.Products.Infrastructure.Repositories
         {
             return AnyAsync(_ => _.Id == id);
         }
+
+        public async Task<Product?> GetAsync(Guid id)
+        {
+            return await GetAsync(_ => _.Id == id);
+        }
     }
 }

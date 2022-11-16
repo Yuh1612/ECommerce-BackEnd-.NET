@@ -7,20 +7,19 @@ namespace ECommerce.Products.API.Extensions
     {
         public static void ConfigureDefault(this IApplicationBuilder app)
         {
-            app.UseHttpsRedirection();
-
+            //app.UseHttpsRedirection();
+            app.UseRouting();
             app.UseDeveloperExceptionPage();
 
             app.UseMiddleware<ExceptionMiddleware>();
 
-            // global cors policy // TODO: Enable all origin as we moved to aws gateway
             app.UseCors(x => x
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .SetIsOriginAllowed(origin => true) // allow any origin
-                .AllowCredentials()
-                .WithExposedHeaders("*")
-            ); // allow credentials
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .SetIsOriginAllowed(origin => true) // allow any origin
+                            .WithExposedHeaders("*")
+                        );
 
             app.UseStaticFiles(new StaticFileOptions
             {
@@ -32,8 +31,6 @@ namespace ECommerce.Products.API.Extensions
                 FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Resources")),
                 RequestPath = "/images"
             });
-
-            app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();

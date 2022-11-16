@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.Products.API.Controllers
 {
-    [Route("api/[controller]s")]
+    [Route("api/v1/sv2/[controller]s")]
     [ApiController]
     public class ProductController : ControllerBase
     {
@@ -22,6 +22,12 @@ namespace ECommerce.Products.API.Controllers
         {
             return await _productService.CreateProduct(request);
         }
+        
+        [HttpPut("{productId:Guid}/active")]
+        public async Task ActiveProduct([FromRoute] Guid productId)
+        {
+            await _productService.ActiveProduct(productId);
+        }
 
         [HttpGet]
         public async Task<PagingResult<ProductInfoResponse>> GetProducts([FromQuery] GetProductsRequest request)
@@ -34,5 +40,7 @@ namespace ECommerce.Products.API.Controllers
         {
             return await _productService.GetProductDetail(productId);
         }
+
+
     }
 }

@@ -150,8 +150,6 @@ namespace ECommerce.Products.Infrastructure.DbContexts
                 entity.ToTable("Shop");
 
                 entity.Property(e => e.Id).ValueGeneratedNever();
-
-                entity.Property(e => e.Name).IsRequired();
             });
 
             modelBuilder.Entity<ShopProducts>(entity =>

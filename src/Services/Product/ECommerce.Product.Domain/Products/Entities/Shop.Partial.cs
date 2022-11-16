@@ -7,5 +7,12 @@ namespace ECommerce.Products.Domain.Entities
         public Shop()
         {
         }
+
+        public Shop(Guid id, string? name, string? userName)
+        {
+            Id = id;
+            UserName = userName;
+            Name = name;
+        }
     }
 }

@@ -20,11 +20,13 @@ namespace ECommerce.Products.API.ViewModels.Products.Responses
 
         public int Quantity { get; set; }
 
-        public double Weight { get; set; }
+        public int Weight { get; set; }
 
-        public double Height { get; set; }
+        public int Height { get; set; }
 
-        public double Length { get; set; }
+        public int Width { get; set; }
+
+        public int Length { get; set; }
 
         public string? Slug { get; set; }
 
@@ -32,7 +34,7 @@ namespace ECommerce.Products.API.ViewModels.Products.Responses
 
         public ShopInfo Shop { get; set; } = new ShopInfo();
 
-        public List<CategoryInfoResponse> Categories { get; set; } = new List<CategoryInfoResponse>();
+        public List<CategoryInfoResponse>? Categories { get; set; } = new List<CategoryInfoResponse>();
 
         public BrandInfoResponse? Brand { get; set; }
 

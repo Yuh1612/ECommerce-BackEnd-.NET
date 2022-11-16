@@ -10,11 +10,11 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\DefaultDatas\BrandDefaultData.sql
+--:r .\DefaultDatas\BrandDefaultData.sql
 
-:r .\DefaultDatas\OptionDefaultData.sql
+--:r .\DefaultDatas\OptionDefaultData.sql
 
 :r .\DefaultDatas\CategoryDefaultData.sql
 
-:r .\DefaultDatas\ShopDefaultData.sql
+--:r .\DefaultDatas\ShopDefaultData.sql
 

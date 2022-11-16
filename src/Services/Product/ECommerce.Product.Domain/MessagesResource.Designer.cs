@@ -61,6 +61,15 @@ namespace ECommerce.Products.Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Giá trị trường không hợp lệ.
+        /// </summary>
+        public static string InvalidField {
+            get {
+                return ResourceManager.GetString("InvalidField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Không tìm thấy thương hiệu.
         /// </summary>
         public static string NotFoundBrand {

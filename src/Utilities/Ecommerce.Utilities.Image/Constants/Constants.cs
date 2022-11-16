@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Ecommerce.Utilities.Image.Constants
+﻿namespace Ecommerce.Utilities.Image.Constants
 {
     public static class Messagge
     {
@@ -15,7 +9,7 @@ namespace Ecommerce.Utilities.Image.Constants
 
     public static class Url
     {
-        public const string ImageUrl = "/{0}/{1}/{2}";
+        public const string ImageUrl = "{0}/{1}/{2}";
     }
 
     public static class FileExtension
@@ -34,7 +28,8 @@ namespace Ecommerce.Utilities.Image.Constants
             ".indd",
             ".svg",
             ".ai",
-            ".eps"
+            ".eps",
+            ".jfif"
         };
     }
 }

@@ -6,5 +6,6 @@ namespace ECommerce.Products.Domain.Products.Interfaces
     public interface IProductRepository : IEFCoreRepository<Product>
     {
         Task<bool> AnyAsync(Guid id);
+        Task<Product?> GetAsync(Guid id);
     }
 }

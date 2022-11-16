@@ -24,17 +24,18 @@ namespace ECommerce.Products.API.ViewModels.Products.Requests
                 Price = _.Price,
                 Slug = _.Slug,
                 Length = _.Length,
+                Width = _.Width,
                 Quantity = _.Quantity,
-                Brand = new BrandInfoResponse
+                Brand = _.BrandId.HasValue ? new BrandInfoResponse
                 {
                     Id = _.Brand.Id,
                     Name = _.Brand.Name,
                     Description = _.Brand.Description
-                },
+                } : null,
                 Shop = new ShopInfo
                 {
                     Id = _.Shop.Id,
-                    Name = _.Shop.Name
+                    Name = _.Shop.Name ?? _.Shop.UserName,
                 },
                 Categories = _.ProductCategories.Select(pc => pc.Category).Select(c => new CategoryInfoResponse
                 {
