@@ -2,9 +2,9 @@
 {
     public interface IFullAuditEntity : IAuditEntity
     {
-        int UpdatedBy { get; }
+        Guid UpdatedBy { get; }
         DateTime UpdatedOn { get; }
 
-        void UpdateModifierInfo(int updatedBy, DateTime updatedOn);
+        void UpdateModifierInfo(Guid updatedBy, DateTime updatedOn);
     }
 }

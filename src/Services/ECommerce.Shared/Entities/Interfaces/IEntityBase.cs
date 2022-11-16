@@ -10,7 +10,7 @@ namespace ECommerce.Shared.Entities.Interfaces
 
         void ClearDomainEvents();
 
-        IReadOnlyCollection<INotification>? GetDomainEvents();
+        IReadOnlyCollection<INotification> GetDomainEvents();
 
         void AddIntegrationEvent(INotification eventItem);
 
@@ -18,6 +18,6 @@ namespace ECommerce.Shared.Entities.Interfaces
 
         void ClearIntegrationEvents();
 
-        IReadOnlyCollection<INotification>? GetIntegrationEvents();
+        IReadOnlyCollection<INotification> GetIntegrationEvents();
     }
 }

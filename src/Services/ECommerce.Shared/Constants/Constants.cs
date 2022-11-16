@@ -3,7 +3,7 @@
     public struct DefaultPaging
     {
         public const int DEFAULT_PAGE_NO = 1;
-        public const int DEFAULT_PAGE_SIZE = 20;
+        public const int DEFAULT_PAGE_SIZE = 24;
     }
 
     public struct AppClaimType

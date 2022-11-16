@@ -2,5 +2,6 @@
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY DEFAULT NEWID(), 
     [Name] NVARCHAR(MAX) NOT NULL, 
-    [Description] NVARCHAR(MAX) NULL
+    [Description] NVARCHAR(MAX) NULL, 
+    [ImageUrl] VARCHAR(MAX) NULL 
 )

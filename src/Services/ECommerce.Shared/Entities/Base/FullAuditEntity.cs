@@ -2,19 +2,19 @@
 
 namespace ECommerce.Shared.Entities.Base
 {
-    public class FullAuditEntity : AuditEntity, IFullAuditEntity
+    public class FullAuditEntityBase : AuditEntityBase, IFullAuditEntity
     {
-        public virtual int UpdatedBy { get; protected set; }
+        public virtual Guid UpdatedBy { get; protected set; }
         public virtual DateTime UpdatedOn { get; protected set; }
 
-        public override void UpdateAudit(int createdBy, DateTime createdOn)
+        public override void UpdateAudit(Guid createdBy, DateTime createdOn)
         {
             CreatedBy = createdBy;
             CreatedOn = createdOn;
             UpdateModifierInfo(createdBy, createdOn);
         }
 
-        public virtual void UpdateModifierInfo(int updatedBy, DateTime updatedOn)
+        public virtual void UpdateModifierInfo(Guid updatedBy, DateTime updatedOn)
         {
             UpdatedBy = updatedBy;
             UpdatedOn = updatedOn;

@@ -2,7 +2,7 @@
 {
     public interface IUserInfo
     {
-        int Id { get; set; }
+        Guid Id { get; set; }
         string? Username { get; set; }
         string? AvatarUrl { get; set; }
         int RoleId { get; set; }
@@ -13,7 +13,7 @@
 
     public class UserInfo : IUserInfo
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public string? Username { get; set; }
         public string? AvatarUrl { get; set; }
         public int RoleId { get; set; }

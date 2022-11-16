@@ -1,0 +1,89 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/sv3/{catchAll}",
+      "DownstreamScheme": "https",
+      "UseServiceDiscovery": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "trungluong.loca.lt",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/sv3/{catchAll}",
+      "UpstreamHttpMethod": [],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": true
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/sv2/{catchAll}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/sv2/{catchAll}",
+      "UpstreamHttpMethod": [],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": true
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/sv1/{catchAll}",
+      "DownstreamScheme": "https",
+      "UseServiceDiscovery": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "quockhoa.loca.lt",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v1/sv1/{catchAll}",
+      "UpstreamHttpMethod": [],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": true
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/images/{catchAll}",
+      "UpstreamHttpMethod": [],
+      "DownstreamPathTemplate": "/images/{catchAll}",
+      "DownstreamScheme": "http",
+      "UseServiceDiscovery": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 8000
+        }
+      ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": true
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    },
+    {
+      "UpstreamPathTemplate": "/media/{catchAll}",
+      "UpstreamHttpMethod": [],
+      "DownstreamPathTemplate": "/media/{catchAll}",
+      "DownstreamScheme": "https",
+      "UseServiceDiscovery": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "quockhoa.loca.lt",
+          "Port": 443
+        }
+      ],
+      "HttpHandlerOptions": {
+        "AllowAutoRedirect": true
+      },
+      "DangerousAcceptAnyServerCertificateValidator": true
+    }
+  ]
+}

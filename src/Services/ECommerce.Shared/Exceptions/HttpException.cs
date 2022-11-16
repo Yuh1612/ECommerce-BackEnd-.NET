@@ -15,5 +15,9 @@ namespace ECommerce.Shared.Exceptions
         {
             StatusCode = statusCode;
         }
+
+        public bool IsClientError() => (int)StatusCode >= 400 && (int)StatusCode <= 499;
+
+        public bool IsServerError() => (int)StatusCode >= 500 && (int)StatusCode <= 599;
     }
 }

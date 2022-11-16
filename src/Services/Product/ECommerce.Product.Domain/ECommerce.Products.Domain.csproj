@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Products\Interfaces\" />
+    <ProjectReference Include="..\..\ECommerce.Shared\ECommerce.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <EmbeddedResource Update="MessagesResource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>MessagesResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>

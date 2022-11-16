@@ -9,12 +9,12 @@
         {
         }
 
-        public ErrorViewModel(string message)
+        public ErrorViewModel(string? message)
         {
             Message = message;
         }
 
-        public ErrorViewModel(string message, string detail) : this(message)
+        public ErrorViewModel(string? message, string? detail) : this(message)
         {
             Detail = detail;
         }
