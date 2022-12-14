@@ -24,6 +24,7 @@ namespace ECommerce.Product.Test
         {
             Assert.IsNull(productService);
             Assert.IsNull(categoryService);
+            Assert.IsTrue(1 == 1);
         }
     }
 }
