@@ -25,5 +25,15 @@ namespace ECommerce.Products.Infrastructure.Repositories
         {
             return await GetAsync(_ => _.Id == id);
         }
+
+        public IQueryable<Product> GetDeactiveProducts()
+        {
+            return GetQuery(_ => !_.IsDeleted && !_.IsActive);
+        }
+
+        public IQueryable<Product> GetProducts()
+        {
+            return GetQuery(_ => !_.IsDeleted && _.IsActive);
+        }
     }
 }

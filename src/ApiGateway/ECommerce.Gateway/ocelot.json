@@ -2,12 +2,12 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/api/v1/sv3/{catchAll}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UseServiceDiscovery": false,
       "DownstreamHostAndPorts": [
         {
-          "Host": "trungluong.loca.lt",
-          "Port": 443
+          "Host": "26.229.103.74",
+          "Port": 5000
         }
       ],
       "UpstreamPathTemplate": "/api/v1/sv3/{catchAll}",
@@ -36,12 +36,12 @@
     },
     {
       "DownstreamPathTemplate": "/api/v1/sv1/{catchAll}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UseServiceDiscovery": false,
       "DownstreamHostAndPorts": [
         {
-          "Host": "quockhoa.loca.lt",
-          "Port": 443
+          "Host": "26.1.174.206",
+          "Port": 8000
         }
       ],
       "UpstreamPathTemplate": "/api/v1/sv1/{catchAll}",
@@ -72,12 +72,12 @@
       "UpstreamPathTemplate": "/media/{catchAll}",
       "UpstreamHttpMethod": [],
       "DownstreamPathTemplate": "/media/{catchAll}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UseServiceDiscovery": false,
       "DownstreamHostAndPorts": [
         {
-          "Host": "quockhoa.loca.lt",
-          "Port": 443
+          "Host": "26.1.174.206",
+          "Port": 8000
         }
       ],
       "HttpHandlerOptions": {

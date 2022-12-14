@@ -13,6 +13,7 @@ using ECommerce.Shared.Exceptions;
 using ECommerce.Shared.Extensions;
 using ECommerce.Shared.Interfaces;
 using ECommerce.Shared.ViewModels;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using RabbitMQ.Publisher;
 
@@ -53,7 +54,7 @@ namespace ECommerce.Products.API.Services
             return Path.Combine(_webHostEnvironment.ContentRootPath, "Resources", code);
         }
 
-        public async Task<ProductInfoResponse> CreateProduct(CreateProductRequest request)
+        public async Task<ProductInfoResponse> CreateProductAsync(CreateProductRequest request)
         {
             if (!await _shopRepository.AnyAsync(request.ShopId))
                 throw new BadRequestException(MessagesResource.NotFoundShop);
@@ -101,24 +102,6 @@ namespace ECommerce.Products.API.Services
             await _productRepository.InsertAsync(product);
             await UnitOfWork.SaveChangesAsync();
 
-            //await _serviceBus.PublishEventAsync(new CreateProductEvent
-            //{
-            //    ProductId = product.Id,
-            //    Description = product.Description,
-            //    Name = product.Name,
-            //    Discount = product.Discount,
-            //    Height = product.Height,
-            //    Length = product.Length,
-            //    Price = product.Price,
-            //    Quantity = product.Quantity,
-            //    Weight = product.Weight,
-            //    Width = product.Width,
-            //    ShopId = product.ShopId,
-            //    Avatar = FileService.GetFileUrls(GetImagePath(product.Code.ToString()), "images")?.FirstOrDefault(),
-            //    IsActive = product.IsActive,
-            //    IsDeleted = product.IsDeleted,
-            //});
-
             return new ProductInfoResponse
             {
                 Id = product.Id,
@@ -128,10 +111,10 @@ namespace ECommerce.Products.API.Services
             };
         }
 
-        public async Task<PagingResult<ProductInfoResponse>> GetProducts(GetProductsRequest request)
+        public async Task<PagingResult<ProductInfoResponse>> GetProductsAsync(GetProductsRequest request)
         {
-            var products = await _productRepository
-                .GetQuery(request.GetFilter())
+            var products = await _productRepository.GetProducts()
+                .Where(request.GetFilter())
                 .Select(request.GetSelection())
                 .ToPagedListAsync(request.PageNo, request.PageSize);
 
@@ -144,7 +127,7 @@ namespace ECommerce.Products.API.Services
             return products;
         }
 
-        public async Task<ProductInfoDetailResponse> GetProductDetail(Guid productId)
+        public async Task<ProductInfoDetailResponse> GetProductDetailAsync(Guid productId)
         {
             if (!await _productRepository.AnyAsync(productId))
                 throw new BadRequestException(MessagesResource.NotFoundProduct);
@@ -159,7 +142,7 @@ namespace ECommerce.Products.API.Services
             return product;
         }
 
-        public async Task ActiveProduct(Guid productId)
+        public async Task ActiveProductAsync(Guid productId)
         {
             var product = await _productRepository.GetAsync(productId);
             if (product == null) throw new BadRequestException(MessagesResource.NotFoundProduct);
@@ -187,5 +170,33 @@ namespace ECommerce.Products.API.Services
                 IsDeleted = product.IsDeleted,
             });
         }
+
+        public async Task DeactiveProductAsync(Guid productId)
+        {
+            var product = await _productRepository.GetAsync(productId);
+            if (product == null) throw new BadRequestException(MessagesResource.NotFoundProduct);
+
+            product.Deactive();
+
+            await _productRepository.UpdateAsync(product);
+            await UnitOfWork.SaveChangesAsync();
+        }
+
+        public async Task<PagingResult<ProductInfoResponse>> GetDeactiveProductsAsync(PagingRequest request)
+        {
+            var products = await _productRepository.GetDeactiveProducts()
+                .Select(new GetProductsRequest().GetSelection())
+                .ToPagedListAsync(request.PageNo, request.PageSize);
+
+            await products.Data.ParallelForEachAsync(product =>
+            {
+                product.ImageUrl = FileService.GetFileUrls(GetImagePath(product.Code.ToString()), "images")?.FirstOrDefault();
+                return Task.CompletedTask;
+            }, 5);
+
+            return products;
+        }
+
+        
     }
 }

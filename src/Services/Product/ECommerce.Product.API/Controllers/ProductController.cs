@@ -18,27 +18,39 @@ namespace ECommerce.Products.API.Controllers
         }
 
         [HttpPost]
-        public async Task<ProductInfoResponse> CreateProduct([FromForm] CreateProductRequest request)
+        public async Task<ProductInfoResponse> CreateProductAsync([FromForm] CreateProductRequest request)
         {
-            return await _productService.CreateProduct(request);
+            return await _productService.CreateProductAsync(request);
         }
         
         [HttpPut("{productId:Guid}/active")]
-        public async Task ActiveProduct([FromRoute] Guid productId)
+        public async Task ActiveProductAsync([FromRoute] Guid productId)
         {
-            await _productService.ActiveProduct(productId);
+            await _productService.ActiveProductAsync(productId);
+        }
+
+        [HttpPut("{productId:Guid}/deactive")]
+        public async Task DeactiveProductAsync([FromRoute] Guid productId)
+        {
+            await _productService.DeactiveProductAsync(productId);
         }
 
         [HttpGet]
-        public async Task<PagingResult<ProductInfoResponse>> GetProducts([FromQuery] GetProductsRequest request)
+        public async Task<PagingResult<ProductInfoResponse>> GetProductsAsync([FromQuery] GetProductsRequest request)
         {
-            return await _productService.GetProducts(request);
+            return await _productService.GetProductsAsync(request);
+        }
+
+        [HttpGet("deactive")]
+        public async Task<PagingResult<ProductInfoResponse>> GetDeactiveProductsAsync([FromQuery] PagingRequest request)
+        {
+            return await _productService.GetDeactiveProductsAsync(request);
         }
 
         [HttpGet("{productId:Guid}")]
-        public async Task<ProductInfoDetailResponse> GetProductDetail([FromRoute] Guid productId)
+        public async Task<ProductInfoDetailResponse> GetProductDetailAsync([FromRoute] Guid productId)
         {
-            return await _productService.GetProductDetail(productId);
+            return await _productService.GetProductDetailAsync(productId);
         }
 
 
