@@ -2,6 +2,7 @@
 using Ecommerce.Utilities.Image.Constants;
 using ECommerce.Shared.Attributes;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ECommerce.Products.API.ViewModels.Products.Requests
 {
@@ -46,6 +47,7 @@ namespace ECommerce.Products.API.ViewModels.Products.Requests
     public class ProductOptionsInfo
     {
         public Guid Id { get; set; }
+
         public string Description { get; set; } = string.Empty;
     }
 }

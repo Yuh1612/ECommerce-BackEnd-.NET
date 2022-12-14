@@ -63,5 +63,10 @@ namespace ECommerce.Products.Domain.Entities
         {
             IsActive = true;
         }
+
+        public void Deactive()
+        {
+            IsActive = false;
+        }
     }
 }
