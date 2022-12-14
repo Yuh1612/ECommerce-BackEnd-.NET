@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecommerce.Utilities.Image",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.Products.RabbitMQ", "src\Services\Product\ECommerce.Product.RabbitMQ\ECommerce.Products.RabbitMQ.csproj", "{6818E598-08A1-4DFA-B5EA-5E08ECEEF272}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Product.Test", "src\Services\Product\ECommerce.Product.Test\ECommerce.Product.Test.csproj", "{A766DB04-F885-4DD4-947B-DF361CA2569B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{6818E598-08A1-4DFA-B5EA-5E08ECEEF272}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6818E598-08A1-4DFA-B5EA-5E08ECEEF272}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6818E598-08A1-4DFA-B5EA-5E08ECEEF272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A766DB04-F885-4DD4-947B-DF361CA2569B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A766DB04-F885-4DD4-947B-DF361CA2569B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A766DB04-F885-4DD4-947B-DF361CA2569B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A766DB04-F885-4DD4-947B-DF361CA2569B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{36D9C179-89EF-4C67-B86D-F8DEBFA14045} = {ABB0C823-812D-4766-A947-DB8629DCD1F6}
 		{E61F4357-6DB8-4B95-B67E-AAE666C785CA} = {816B1C34-AC59-489B-A0C6-0D0ACDA8B181}
 		{6818E598-08A1-4DFA-B5EA-5E08ECEEF272} = {ABB0C823-812D-4766-A947-DB8629DCD1F6}
+		{A766DB04-F885-4DD4-947B-DF361CA2569B} = {ABB0C823-812D-4766-A947-DB8629DCD1F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FD4A75DA-8F33-4540-AAE7-8C119BF36687}
